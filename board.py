@@ -10,15 +10,15 @@ class Board:
         for i, check_box in enumerate(CHECK_BOXES):
             self._box[str(i)] = check_box
     
-    def print(self):
+    def getBoard(self):
         #Impresión del tablero en la terminal
-        return f'''  
+        print(f'''  
         {self._box['0']} | {self._box['1']} | {self._box['2']}
         _________   
         {self._box['3']} | {self._box['4']} | {self._box['5']}
         _________
         {self._box['6']} | {self._box['7']} | {self._box['8']}
-        '''
+        ''')
 
     def isValid(self, space_box):
         #Se valida si el movimiento a realizar en la casilla no ocupa ya un movimiento hecho
@@ -34,4 +34,4 @@ class Board:
 
 if __name__ == '__main__':
     board = Board()
-    
+    board.getBoard()

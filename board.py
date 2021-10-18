@@ -26,7 +26,7 @@ class Board:
 
     def isFilled(self, actual_movements):
         #Se verifica que el tablero esté lleno o no
-        return False if self.max_movements >= actual_movements else True
+        return False if self.max_movements > actual_movements else True
 
     def isWinner(self):
         #**Pendiente A verificar si ha resultado ganador el jugador

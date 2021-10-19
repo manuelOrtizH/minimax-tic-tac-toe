@@ -32,6 +32,13 @@ class Board:
         #**Pendiente A verificar si ha resultado ganador el jugador
         return 
 
+    #Método para insertar simbolo en casilla
+    def insertSymbol(self, space_box, player):
+        self._box[space_box] = player
+        self.max_movements -= 1
+
 if __name__ == '__main__':
     board = Board()
     board.getBoard()
+    board.insertSymbol('0', 'X')
+    board.getBoard()    

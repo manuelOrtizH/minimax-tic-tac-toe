@@ -5,7 +5,7 @@ class Board:
     def __init__(self):
         #Usaremos un diccionario para representar el tablero y de esta forma, sea más eficiente la búsqueda
         self._box = {}
-        self.max_movements = 9
+        self.max_movements = 5
         #Generamos los espacios en blanco, con su correspondiente llave representando la casilla
         for i, check_box in enumerate(CHECK_BOXES):
             self._box[str(i)] = check_box
@@ -29,8 +29,47 @@ class Board:
         return False if self.max_movements > actual_movements else True
 
     def isWinner(self):
-        #**Pendiente A verificar si ha resultado ganador el jugador
-        return 
+        #Diagonal
+        if self._box['0'] == X and self._box['4'] == X and self._box['8'] == X:
+            return X
+        elif self._box['2'] == X and self._box['4'] == X and self._box['6'] == X:
+            return X
+        #Horizontal 
+        elif self._box['0'] == X and self._box['1'] == X and self._box['2'] == X:
+            return X
+        elif self._box['3'] == X and self._box['4'] == X and self._box['5'] == X:
+            return X
+        elif self._box['6'] == X and self._box['7'] == X and self._box['8'] == X:
+            return X
+        #Vertical
+        elif self._box['0'] == X and self._box['3'] == X and self._box['6'] == X:
+            return X
+        elif self._box['1'] == X and self._box['4'] == X and self._box['7'] == X:
+            return X
+        elif self._box['2'] == X and self._box['5'] == X and self._box['8'] == X:
+            return X
+        #Diagonal
+        elif self._box['0'] == O and self._box['4'] == O and self._box['8'] == O:
+            return O
+        elif self._box['2'] == O and self._box['4'] == O and self._box['6'] == O:
+            return O
+        #Horizontal 
+        elif self._box['0'] == O and self._box['1'] == O and self._box['2'] == O:
+            return O
+        elif self._box['3'] == O and self._box['4'] == O and self._box['5'] == O:
+            return O
+        elif self._box['6'] == O and self._box['7'] == O and self._box['8'] == O:
+            return O
+        #Vertical
+        elif self._box['0'] == O and self._box['3'] == O and self._box['6'] == O:
+            return O
+        elif self._box['1'] == O and self._box['4'] == O and self._box['7'] == O:
+            return O
+        elif self._box['2'] == O and self._box['5'] == O and self._box['8'] == O:
+            return O
+        else:
+            return 'Tie'
+    
 
 if __name__ == '__main__':
     board = Board()

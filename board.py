@@ -1,4 +1,6 @@
-CHECK_BOXES = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+CHECK_BOXES = [' ', ' ', ' ', 
+               ' ', ' ', ' ', 
+               ' ', ' ', ' ']
 X, O = 'X', 'O'
 
 class Board:
@@ -68,7 +70,7 @@ class Board:
         elif self._box['2'] == O and self._box['5'] == O and self._box['8'] == O:
             return O
         else:
-            return 'Tie'
+            return '_'
     
 
 if __name__ == '__main__':

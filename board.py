@@ -1,4 +1,4 @@
-CHECK_BOXES = ['X', ' ', 'O', ' ', ' ', ' ', 'X', ' ', ' ']
+CHECK_BOXES = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 X, O = 'X', 'O'
 
 class Board:

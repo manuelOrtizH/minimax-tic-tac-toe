@@ -1,13 +1,13 @@
-from withoutPrun import *
-
-CHECK_BOXES = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+CHECK_BOXES = [' ', ' ', ' ', 
+               ' ', ' ', ' ', 
+               ' ', ' ', ' ']
 X, O = 'X', 'O'
 
 class Board:
     def __init__(self):
         #Usaremos un diccionario para representar el tablero y de esta forma, sea más eficiente la búsqueda
         self._box = {}
-        self.max_movements = 9
+        self.max_movements = 5
         #Generamos los espacios en blanco, con su correspondiente llave representando la casilla
         for i, check_box in enumerate(CHECK_BOXES):
             self._box[str(i)] = check_box
@@ -31,52 +31,48 @@ class Board:
         return False if self.max_movements > actual_movements else True
 
     def isWinner(self):
-        if self._box['0'] == self._box['1'] == self._box['2'] != ' ':
-            return True
-        elif self._box['3'] == self._box['4'] == self._box['5'] != ' ':
-            return True
-        elif self._box['6'] == self._box['7'] == self._box['8'] != ' ':
-            return True
-        elif self._box['0'] == self._box['3'] == self._box['6'] != ' ':
-            return True
-        elif self._box['1'] == self._box['4'] == self._box['7'] != ' ':
-            return True
-        elif self._box['2'] == self._box['5'] == self._box['8'] != ' ':
-            return True
-        elif self._box['0'] == self._box['4'] == self._box['8'] != ' ':
-            return True
-        elif self._box['2'] == self._box['4'] == self._box['6'] != ' ':
-            return True
+        #Diagonal
+        if self._box['0'] == X and self._box['4'] == X and self._box['8'] == X:
+            return X
+        elif self._box['2'] == X and self._box['4'] == X and self._box['6'] == X:
+            return X
+        #Horizontal 
+        elif self._box['0'] == X and self._box['1'] == X and self._box['2'] == X:
+            return X
+        elif self._box['3'] == X and self._box['4'] == X and self._box['5'] == X:
+            return X
+        elif self._box['6'] == X and self._box['7'] == X and self._box['8'] == X:
+            return X
+        #Vertical
+        elif self._box['0'] == X and self._box['3'] == X and self._box['6'] == X:
+            return X
+        elif self._box['1'] == X and self._box['4'] == X and self._box['7'] == X:
+            return X
+        elif self._box['2'] == X and self._box['5'] == X and self._box['8'] == X:
+            return X
+        #Diagonal
+        elif self._box['0'] == O and self._box['4'] == O and self._box['8'] == O:
+            return O
+        elif self._box['2'] == O and self._box['4'] == O and self._box['6'] == O:
+            return O
+        #Horizontal 
+        elif self._box['0'] == O and self._box['1'] == O and self._box['2'] == O:
+            return O
+        elif self._box['3'] == O and self._box['4'] == O and self._box['5'] == O:
+            return O
+        elif self._box['6'] == O and self._box['7'] == O and self._box['8'] == O:
+            return O
+        #Vertical
+        elif self._box['0'] == O and self._box['3'] == O and self._box['6'] == O:
+            return O
+        elif self._box['1'] == O and self._box['4'] == O and self._box['7'] == O:
+            return O
+        elif self._box['2'] == O and self._box['5'] == O and self._box['8'] == O:
+            return O
         else:
-            return False 
-
-    #Método para insertar simbolo en casilla
-    def insertSymbol(self, space_box, player):
-        if self.isValid(space_box):
-            self._box[space_box] = player
-            self.max_movements -= 1
-            self.getBoard()
-        else:
-            print('Movimiento inválido')
-
-    def checkTie(self):
-        if self.isFilled(self.max_movements):
-            print('Empate')
-            return True
-        else:
-            return False
+            return '_'
     
 
 if __name__ == '__main__':
     board = Board()
     board.getBoard()
-    # Human player gets O
-    humanPlayer(board)
-    # Computer player gets X
-    computerPlayer(board)
-
-
-
-    
-
-

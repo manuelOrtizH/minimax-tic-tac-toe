@@ -2,16 +2,16 @@ from board import Board
 from game import User, AI
 X, O = 'X', 'O'
 
-def minimaxAB(board, depth, isMax,alpha, beta):
+def minimaxAB(board, depth, isMax,alpha, beta, ai_mark):
 	#Primera verificación de nuestro método recursivo
 	#Encontrar un ganador antes de ejectuar lo demás
 	max_move = 5
-	if board.isWinner() == 'X': 
+	if board.isWinner() == ai_mark: 
 		#En caso de que encontremos un ganador, obtendremos un valor distinto a aquellos que
 		#se han considerado óptimos durante la ejecución
 		#retornamos los valores que se cuenta inicialmente como maximizador o no
 		return 1000
-	elif board.isWinner() == 'O': 
+	elif board.isWinner() != ai_mark: 
 		return -1000
 
 	#Verificamos si el tablero está lleno antes de la ejecución
@@ -71,7 +71,7 @@ def playAI(ai, board):
 			#Jugamos, para, basarnos en el tablero conforme a esta jugada
 			board._box[k] = ai.mark
 			#Obtenemos el movimiento óptimo con el algorittmo minmax y alpha y beta
-			obtained_val = minimaxAB(board, 0, ai.isMax, ai.alpha, ai.beta)
+			obtained_val = minimaxAB(board, 0, ai.isMax, ai.alpha, ai.beta, ai.mark)
 			#Reseteamos la jugada que se haya ejecutado
 			board._box[k] = ' '
 			#Basado en el movimiento obtenido y el valor óptimo, comparamos y obtenemos la menor jugada,

@@ -28,7 +28,7 @@ class AI(Player):
         self.alpha = -1000
         self.beta = 1000
         super().__init__(X if user_mark == O else O)
-        self.isMax = True if self.mark == O else False
+        self.isMax = False if self.mark == X else True
    
     
         

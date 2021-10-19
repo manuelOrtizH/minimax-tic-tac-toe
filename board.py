@@ -7,7 +7,7 @@ class Board:
     def __init__(self):
         #Usaremos un diccionario para representar el tablero y de esta forma, sea más eficiente la búsqueda
         self._box = {}
-        self.max_movements = 5
+        # self.max_movements = 5
         #Generamos los espacios en blanco, con su correspondiente llave representando la casilla
         for i, check_box in enumerate(CHECK_BOXES):
             self._box[str(i)] = check_box
@@ -74,9 +74,9 @@ class Board:
     
 
     #Método para insertar simbolo en casilla
-    def insertSymbol(self, space_box, player):
-        self._box[space_box] = player
-        self.max_movements -= 1
+    # def insertSymbol(self, space_box, player):
+    #     self._box[space_box] = player
+    #     self.max_movements -= 1
 
 if __name__ == '__main__':
     board = Board()

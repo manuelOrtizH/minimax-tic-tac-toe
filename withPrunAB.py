@@ -1,6 +1,5 @@
 from board import Board
 X, O = 'X', 'O'
-isYourTurn = True
 
 class Player:
 	def __init__(self):
@@ -21,8 +20,8 @@ def main():
 	print("Tic-Tac-Toe con algoritmo minmax/Poda AlfaBeta")
 	board = Board()
 	player = Player()
-	best_play = minimaxAB(board, player, -1000, 1000)
-	print(best_play)
+	minimaxAB(board, player, -1000, 1000)
+	
 
 if __name__ == '__main__':
 	main()

@@ -7,7 +7,7 @@ class Board:
     def __init__(self):
         #Usaremos un diccionario para representar el tablero y de esta forma, sea más eficiente la búsqueda
         self._box = {}
-        self.max_movements = 5
+        # self.max_movements = 5
         #Generamos los espacios en blanco, con su correspondiente llave representando la casilla
         for i, check_box in enumerate(CHECK_BOXES):
             self._box[str(i)] = check_box
@@ -28,7 +28,7 @@ class Board:
 
     def isFilled(self, actual_movements):
         #Se verifica que el tablero esté lleno o no
-        return False if self.max_movements > actual_movements else True
+        return True if actual_movements <= 0 else False
 
     def isWinner(self):
         #Diagonal
@@ -73,6 +73,13 @@ class Board:
             return '_'
     
 
+    #Método para insertar simbolo en casilla
+    # def insertSymbol(self, space_box, player):
+    #     self._box[space_box] = player
+    #     self.max_movements -= 1
+
 if __name__ == '__main__':
     board = Board()
     board.getBoard()
+    board.insertSymbol('0', 'X')
+    board.getBoard()    

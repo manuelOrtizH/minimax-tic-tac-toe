@@ -2,19 +2,20 @@ from board import Board
 from game import User, AI
 X, O = 'X', 'O'
 
-def minimaxAB(board, depth, isMax,alpha, beta):
+def minimaxAB(board, depth, isMax,alpha, beta, ai_mark):
 	#Primera verificación de nuestro método recursivo
 	#Encontrar un ganador antes de ejectuar lo demás
-	if board.isWinner() == 'X': 
+	max_move = 5
+	if board.isWinner() == ai_mark: 
 		#En caso de que encontremos un ganador, obtendremos un valor distinto a aquellos que
 		#se han considerado óptimos durante la ejecución
 		#retornamos los valores que se cuenta inicialmente como maximizador o no
 		return 1000
-	elif board.isWinner() == 'O': 
+	elif board.isWinner() != ai_mark: 
 		return -1000
 
 	#Verificamos si el tablero está lleno antes de la ejecución
-	if board.isFilled(depth):
+	if board.isFilled(max_move - depth):
 		return 0
 	#Previamente se mencionó como sobre si se consideraba como maximizador o no al jugador
 	#Ante esta ejecución, obtenremos los mejores movimientos de tanto el jugador, como la IA
@@ -22,6 +23,7 @@ def minimaxAB(board, depth, isMax,alpha, beta):
 	#Recorremos todo el tablero, teniendo un gran árbol de nodos con las diferentes jugadas por hacer
 	for k,v in board._box.items():
 		if v == ' ':
+			print('Empty')
 			#Jugaremos dependiendo si se trata del maximizador o no
 			board._box[k] = X if isMax else O
 			#Obtenemos una casilla llena, teniendo así un gran árbol que se formará a continuación
@@ -37,6 +39,7 @@ def minimaxAB(board, depth, isMax,alpha, beta):
 			#de forma contrario, obtenemos la mejor forma de que el usuario no nos prohíba esto
 			#hablando como parte de la ia
 			optimal_val = max(optimal_val, obtained_val) if isMax else min(optimal_val, obtained_val)
+			
 			#al contar con elementos como alpha y beta, los utilizaremos para podar nuestro árbol de nodos
 			#*Con nodos, nos referimos a las diferentes opciones que tenemos con nuestro tablero en el juego
 			if isMax:
@@ -49,6 +52,7 @@ def minimaxAB(board, depth, isMax,alpha, beta):
 			#solo pasaremos los valores alfa y beta a los nodos secundarios.
 			if alpha >= beta: 
 				break
+	
 	return optimal_val
 	
 def playAI(ai, board):
@@ -60,12 +64,14 @@ def playAI(ai, board):
 	move = -1
 	#Recorremos el tablero, obteniendo así la jugada más óptima contando con alpha y beta
 	for k,v in board._box.items():
+		
 		#Encontramos un espacio disponible para jugar
 		if v == ' ':
+			
 			#Jugamos, para, basarnos en el tablero conforme a esta jugada
 			board._box[k] = ai.mark
 			#Obtenemos el movimiento óptimo con el algorittmo minmax y alpha y beta
-			obtained_val = minimaxAB(board, 0, ai.isMax, ai.alpha, ai.beta)
+			obtained_val = minimaxAB(board, 0, ai.isMax, ai.alpha, ai.beta, ai.mark)
 			#Reseteamos la jugada que se haya ejecutado
 			board._box[k] = ' '
 			#Basado en el movimiento obtenido y el valor óptimo, comparamos y obtenemos la menor jugada,

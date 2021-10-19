@@ -24,7 +24,7 @@ def minimaxAB(board, depth, isMax,alpha, beta):
 				alpha = max(alpha, optimal_val)
 			else:
 				beta = min(beta, optimal_val)
-			if beta <= alpha: 
+			if alpha >= beta: 
 				break
 	return optimal_val
 	

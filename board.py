@@ -1,3 +1,5 @@
+from withoutPrun import *
+
 CHECK_BOXES = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 X, O = 'X', 'O'
 
@@ -29,16 +31,52 @@ class Board:
         return False if self.max_movements > actual_movements else True
 
     def isWinner(self):
-        #**Pendiente A verificar si ha resultado ganador el jugador
-        return 
+        if self._box['0'] == self._box['1'] == self._box['2'] != ' ':
+            return True
+        elif self._box['3'] == self._box['4'] == self._box['5'] != ' ':
+            return True
+        elif self._box['6'] == self._box['7'] == self._box['8'] != ' ':
+            return True
+        elif self._box['0'] == self._box['3'] == self._box['6'] != ' ':
+            return True
+        elif self._box['1'] == self._box['4'] == self._box['7'] != ' ':
+            return True
+        elif self._box['2'] == self._box['5'] == self._box['8'] != ' ':
+            return True
+        elif self._box['0'] == self._box['4'] == self._box['8'] != ' ':
+            return True
+        elif self._box['2'] == self._box['4'] == self._box['6'] != ' ':
+            return True
+        else:
+            return False 
 
     #Método para insertar simbolo en casilla
     def insertSymbol(self, space_box, player):
-        self._box[space_box] = player
-        self.max_movements -= 1
+        if self.isValid(space_box):
+            self._box[space_box] = player
+            self.max_movements -= 1
+            self.getBoard()
+        else:
+            print('Movimiento inválido')
+
+    def checkTie(self):
+        if self.isFilled(self.max_movements):
+            print('Empate')
+            return True
+        else:
+            return False
+    
 
 if __name__ == '__main__':
     board = Board()
     board.getBoard()
-    board.insertSymbol('0', 'X')
-    board.getBoard()    
+    # Human player gets O
+    humanPlayer(board)
+    # Computer player gets X
+    computerPlayer(board)
+
+
+
+    
+
+

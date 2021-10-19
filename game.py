@@ -3,16 +3,15 @@ class Player:
     def __init__(self, mark):
         self.actual_movement = 0
         self.prev_movement = 0
-        self.turns_counter = 0
+        self.turns_counter = 5 if mark == X else 4
         self.mark = mark
-
 class User(Player):
     def __init__(self, mark):
         self.turn = False if mark == O else True
         super().__init__(mark)
 
     def advanceOnGame(self):
-        self.turns_counter+=1
+        self.turns_counter-=1
         self.turn = not self.turn
 
     def play(self, board):

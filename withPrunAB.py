@@ -10,26 +10,27 @@ def minimaxAB(board, depth, isMax,alpha, beta, ai_mark):
 		#En caso de que encontremos un ganador, obtendremos un valor distinto a aquellos que
 		#se han considerado óptimos durante la ejecución
 		#retornamos los valores que se cuenta inicialmente como maximizador o no
-		return 1000
-	elif board.isWinner() != ai_mark: 
-		return -1000
+		return 10
+	
+	if board.isLoser(ai_mark):
+		return -10
 
 	#Verificamos si el tablero está lleno antes de la ejecución
 	if board.isFilled(max_move - depth):
-		return 0
+		return 1
 	#Previamente se mencionó como sobre si se consideraba como maximizador o no al jugador
 	#Ante esta ejecución, obtenremos los mejores movimientos de tanto el jugador, como la IA
 	optimal_val = -1000 if isMax else 1000
 	#Recorremos todo el tablero, teniendo un gran árbol de nodos con las diferentes jugadas por hacer
 	for k,v in board._box.items():
 		if v == ' ':
-			print('Empty')
 			#Jugaremos dependiendo si se trata del maximizador o no
-			board._box[k] = X if isMax else O
+			board._box[k] = O if isMax else X
 			#Obtenemos una casilla llena, teniendo así un gran árbol que se formará a continuación
 			#con nuestro método recursivo
 			#Por lo tanto, avanzamos en la profundidad de nuestro gran árbol de nodos
-			obtained_val = minimaxAB(board, depth + 1, not isMax, alpha, beta)
+			mark = X if ai_mark == O else X
+			obtained_val = minimaxAB(board, depth + 1, not isMax, alpha, beta, mark)
 			board._box[k] = ' '
 			#obtenedremos el valor máximo o mínimo de nuestro valor óptimo, al momento y de nuestro valor obtenido
 			#del método recursivo, el cual, en otras palabras, es valor óptimo de la recorrida recursiva que se 
@@ -67,7 +68,6 @@ def playAI(ai, board):
 		
 		#Encontramos un espacio disponible para jugar
 		if v == ' ':
-			
 			#Jugamos, para, basarnos en el tablero conforme a esta jugada
 			board._box[k] = ai.mark
 			#Obtenemos el movimiento óptimo con el algorittmo minmax y alpha y beta

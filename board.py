@@ -1,6 +1,6 @@
-CHECK_BOXES = [' ', ' ', ' ', 
-               ' ', ' ', ' ', 
-               ' ', ' ', ' ']
+CHECK_BOXES = ['X', ' ', 'O', 
+               'O', ' ', ' ', 
+               'X', 'X', 'O']
 X, O = 'X', 'O'
 
 class Board:
@@ -71,12 +71,16 @@ class Board:
             return O
         else:
             return '_'
-    
 
     #Método para insertar simbolo en casilla
     # def insertSymbol(self, space_box, player):
     #     self._box[space_box] = player
     #     self.max_movements -= 1
+
+    def isLoser(self, mark):
+        winner = self.isWinner()
+        if winner != '_' and winner != mark:
+            return True
 
 if __name__ == '__main__':
     board = Board()

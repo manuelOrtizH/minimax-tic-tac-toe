@@ -15,13 +15,14 @@ class User(Player):
         self.turn = not self.turn
 
     def play(self, board):
-        decision = input('¿En qué casilla desea jugar?: ')
+        decision = input('¿En qué casilla desea jugar? (0-8): ')
         while not board.isValid(decision):
             print('Esa casilla no es válida.')
             decision = input('¿En qué casilla desea jugar?: ')
         
         board._box[decision] = self.mark
         self.advanceOnGame()
+        
 
 class AI(Player):
     def __init__(self, user_mark):

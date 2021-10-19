@@ -1,3 +1,4 @@
+X, O = 'X', 'O'
 class Player:
 	def __init__(self):
 		self.actual_movement = 0

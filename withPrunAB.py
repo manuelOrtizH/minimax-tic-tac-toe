@@ -3,40 +3,25 @@ from game import User, AI
 X, O = 'X', 'O'
 
 def minimaxAB(board, depth, isMax,alpha, beta):
-
+	#Arreglaré esto xd xd xd xd xd
 	if board.isWinner() == 'X':
 		return 10
 	elif board.isWinner() == 'O':
 		return -10
 	else:
 		return 0
-	
-	if isMax:
-		optimal_val = -1000
-		for k,v in board._box.items():
-			if v == ' ':
-				board._box[k] = O
-				obtained_val = minimaxAB(board, depth + 1, False, alpha, beta)
-				optimal_val = max(optimal_val, obtained_val)
-				alpha = max(alpha, optimal_val)
 
-				if beta <= alpha: 
-					break
-		return optimal_val
-
-	else:
-		optimal_val = 1000
-		for k,v in board._box.items():
-			if v == ' ':
-				board._box[k] = O
-				obtained_val = minimaxAB(board, depth + 1, True, alpha, beta)
-				optimal_val = min(optimal_val, obtained_val)
-				alpha = min(alpha, optimal_val)
-
-				if beta <= alpha: 
-					break
-		return optimal_val	
-
+	optimal_val = -1000 if isMax else 1000
+	for k,v in board._box.items():
+		if v == ' ':
+			board._box[k] = O
+			obtained_val = minimaxAB(board, depth + 1, not isMax, alpha, beta)
+			board._box[k] = ' '
+			optimal_val = max(optimal_val, obtained_val) if isMax else min(optimal_val, obtained_val)
+			alpha = max(alpha, optimal_val) if isMax else min(alpha, optimal_val)
+			if beta <= alpha: 
+				break
+	return optimal_val
 
 def playAI(ai, board):
 	optimal_val = -1000

@@ -20,6 +20,9 @@ def minimax(board, depth, isMax, ai_mark):
 	#Verificamos si el tablero está lleno antes de la ejecución
 	if board.isFilled(max_move - depth):
 		return 10
+
+	if board.isTie():
+		return 1
 	#Basados en estos estados terminales, para cada turno explorado el maximizador o minizador escogera la jugada mas optima
 	#Previamente se mencionó como sobre si se consideraba como maximizador o no al jugador
 	#Ante esta ejecución, obtenremos los mejores movimientos de tanto el jugador, como la IA

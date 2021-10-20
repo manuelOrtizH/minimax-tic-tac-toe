@@ -1,6 +1,3 @@
-# CHECK_BOXES = ['X', ' ', 'O', 
-#                'O', ' ', ' ', 
-#                'X', 'X', 'O']
 CHECK_BOXES = [' ', ' ', ' ', 
                ' ', ' ', ' ', 
                ' ', ' ', ' ']
@@ -32,6 +29,9 @@ class Board:
     def isFilled(self, actual_movements):
         #Se verifica que el tablero esté lleno o no
         return True if actual_movements <= 0 else False
+
+    def isTie(self):
+        return True if ' ' in self._box else False
 
     def isWinner(self):
         #Diagonal

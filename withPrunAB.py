@@ -18,6 +18,9 @@ def minimaxAB(board, depth, isMax,alpha, beta, ai_mark):
 	#Verificamos si el tablero está lleno antes de la ejecución
 	if board.isFilled(max_move - depth):
 		return 1
+
+	if board.isTie():
+		return 1
 	#Previamente se mencionó como sobre si se consideraba como maximizador o no al jugador
 	#Ante esta ejecución, obtenremos los mejores movimientos de tanto el jugador, como la IA
 	optimal_val = -1000 if isMax else 1000

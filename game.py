@@ -1,8 +1,6 @@
 X, O = 'X', 'O'
 class Player:
     def __init__(self, mark):
-        self.actual_movement = 0
-        self.prev_movement = 0
         self.turns_counter = 5
         self.mark = mark
 class User(Player):

@@ -31,7 +31,7 @@ class Board:
         return True if actual_movements <= 0 else False
 
     def isTie(self):
-        return True if ' ' in self._box else False
+        return True if ' ' not in self._box else False
 
     def isWinner(self):
         #Diagonal

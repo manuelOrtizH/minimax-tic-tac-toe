@@ -1,3 +1,6 @@
+#Manuel Ortiz Hernández - A01655515
+#Mónica Lara Pineda - A01655306
+
 from board import Board
 from game import User, AI
 X, O = 'X', 'O'

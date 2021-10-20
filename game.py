@@ -1,3 +1,6 @@
+#Manuel Ortiz Hernández - A01655515
+#Mónica Lara Pineda - A01655306
+
 X, O = 'X', 'O'
 class Player:
     def __init__(self, mark):

@@ -1,3 +1,6 @@
+#Manuel Ortiz Hernández - A01655515
+#Mónica Lara Pineda - A01655306
+
 CHECK_BOXES = [' ', ' ', ' ', 
                ' ', ' ', ' ', 
                ' ', ' ', ' ']
